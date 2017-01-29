@@ -27,31 +27,31 @@ client = UserLocalChatApi::Client.new('{access token}')
 # ユーザー入力メッセージに対し、自然な受け答えを返す
 p client.chat("こんにちは")
 # => {
-#      "status"=>"success",
-#      "result"=>"こんにちはっ"
+#      "status" => "success",
+#      "result" => "こんにちはっ"
 #    }
 
 # キャラクター会話変換API
 # ネコやイヌなどの語尾に自動変換する 例)愉快ですね→愉快だニャ
 p client.character("ねむいな", "cat")
 # => {
-#      "status"=>"success",
-#      "result"=>"ねむいニャ"
+#      "status" => "success",
+#      "result" => "ねむいニャ"
 #    }
 
 # 氏名自動識別API
 # 会話中の相手の名前をもとに性別判定したり、姓・名を切り分ける
 p client.name("田中太郎")
 # => {
-#      "status"=>"success",
-#      "result"=>{
-#        "last_name"=>"田中",
-#        "last_name_yomi" = >"たなか",
-#        "first_name"=>"太郎",
-#        "first_name_yomi"=>"たろう",
-#        "gender"=>1,
-#        "gender_accuracy"=>4,
-#        "nickname"=>[
+#      "status" => "success",
+#      "result" => {
+#              "last_name" => "田中",
+#         "last_name_yomi" =>"たなか",
+#             "first_name" => "太郎",
+#        "first_name_yomi" => "たろう",
+#                 "gender" => 1,
+#        "gender_accuracy" => 4,
+#               "nickname" => [
 #          "たろぴー",
 #          "たろたん",
 #          "たろちゃん",
@@ -71,20 +71,20 @@ p client.name("田中太郎")
 # 文章を単語に分割・活用形抽出するAPI
 p client.decompose("公園にキレイな花が咲いていました。")
 # => {
-#      "status"=>"success",
-#      "result"=>[
-#        { "surface"=>"公園", "pos"=>"名詞", "origin"=>"公園", "yomi"=>"コウエン" },
-#        { "surface"=>"に", "pos"=>"助詞", "origin"=>"に", "yomi"=>"ニ" },
-#        { "surface"=>"キレイ", "pos"=>"名詞", "origin"=>"キレイ", "yomi"=>"キレイ" },
-#        { "surface"=>"な", "pos"=>"助動詞", "origin"=>"だ", "yomi"=>"ナ" },
-#        { "surface"=>"花", "pos"=>"名詞", "origin"=>"花", "yomi"=>"ハナ" },
-#        { "surface"=>"が", "pos"=>"助詞", "origin"=>"が", "yomi"=>"ガ" },
-#        { "surface"=>"咲い", "pos"=>"動詞", "origin"=>"咲く", "yomi"=>"サイ" },
-#        { "surface"=>"て", "pos"=>"助詞", "origin"=>"て", "yomi"=>"テ" },
-#        { "surface"=>"い", "pos"=>"動詞", "origin"=>"いる", "yomi"=>"イ" },
-#        { "surface"=>"まし", "pos"=>"助動詞", "origin"=>"ます", "yomi"=>"マシ" },
-#        { "surface"=>"た", "pos"=>"助動詞", "origin"=>"た", "yomi"=>"タ" },
-#        { "surface"=>"。", "pos"=>"記号", "origin"=>"。", "yomi"=>"。" }
+#      "status" => "success",
+#      "result" => [
+#        { "surface" => "公園",   "pos" => "名詞",   "origin" => "公園",   "yomi" => "コウエン" },
+#        { "surface" => "に",     "pos" => "助詞",   "origin" => "に",     "yomi" => "ニ" },
+#        { "surface" => "キレイ", "pos" => "名詞",   "origin" => "キレイ", "yomi" => "キレイ" },
+#        { "surface" => "な",     "pos" => "助動詞", "origin" => "だ",     "yomi" => "ナ" },
+#        { "surface" => "花",     "pos" => "名詞",   "origin" => "花",     "yomi" => "ハナ" },
+#        { "surface" => "が",     "pos" => "助詞",   "origin" => "が",     "yomi" => "ガ" },
+#        { "surface" => "咲い",   "pos" => "動詞",   "origin" => "咲く",   "yomi" => "サイ" },
+#        { "surface" => "て",     "pos" => "助詞",   "origin" => "て",     "yomi" => "テ" },
+#        { "surface" => "い",     "pos" => "動詞",   "origin" => "いる",   "yomi" => "イ" },
+#        { "surface" => "まし",   "pos" => "助動詞", "origin" => "ます",   "yomi" => "マシ" },
+#        { "surface" => "た",     "pos" => "助動詞", "origin" => "た",     "yomi" => "タ" },
+#        { "surface" => "。",     "pos" => "記号",   "origin" => "。",     "yomi" => "。" }
 #      ]
 #    }
 ```

@@ -11,31 +11,42 @@ module UserLocalChatApi
       @access_token = access_token || ENV['USER_LOCAL_ACCESS_TOKEN']
     end
 
-    def chat(msg)
-      url = "#{DEFAULT_URL}/chat?key=#{@access_token}&message=#{msg}"
-      response(url)
+    def chat(msg, user_name = nil)
+      params = {
+        message:   msg,
+        user_name: user_name,
+      }
+      response("chat", params)
     end
 
     def character(msg, character_type = nil)
-      url = "#{DEFAULT_URL}/character?key=#{@access_token}&message=#{msg}&character_type=#{character_type}"
-      response(url)
+      params = {
+        message:        msg,
+        character_type: character_type,
+      }
+      response("character", params)
     end
 
     def name(name)
-      url = "#{DEFAULT_URL}/name?key=#{@access_token}&message=#{name}"
-      response(url)
+      params = { message: name }
+      response("name", params)
     end
 
-    def decompose(msg)
-      url = "#{DEFAULT_URL}/decompose?key=#{@access_token}&message=#{msg}"
-      response(url)
+    def decompose(text, detail = false, cut_last_word = false)
+      params = {
+        message:       text,
+        detail:        detail,
+        cut_last_word: cut_last_word,
+      }
+      response("decompose", params)
     end
 
     private
-    def response(url)
-      url_escape = URI.escape(url)
-      rest       = RestClient.get(url_escape)
-      result     = JSON.parse(rest)
+    def response(type, params)
+      params[:key] = @access_token
+      params       = URI.encode_www_form(params)
+      rest         = RestClient.get("#{DEFAULT_URL}/#{type}?#{params}")
+      result       = JSON.parse(rest)
 
       result
     end
